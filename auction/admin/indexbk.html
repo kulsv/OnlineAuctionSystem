@@ -1,0 +1,91 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<title>Drop-Down Menu</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<link rel="stylesheet" type="text/css" href="css/default.css">
+
+<!-- dd menu -->
+<script type="text/javascript">
+<!--
+var timeout         = 500;
+var closetimer		= 0;
+var ddmenuitem      = 0;
+
+// open hidden layer
+function mopen(id)
+{	
+	// cancel close timer
+	mcancelclosetime();
+
+	// close old layer
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+
+	// get new layer and show it
+	ddmenuitem = document.getElementById(id);
+	ddmenuitem.style.visibility = 'visible';
+
+}
+// close showed layer
+function mclose()
+{
+	if(ddmenuitem) ddmenuitem.style.visibility = 'hidden';
+}
+
+// go close timer
+function mclosetime()
+{
+	closetimer = window.setTimeout(mclose, timeout);
+}
+
+// cancel close timer
+function mcancelclosetime()
+{
+	if(closetimer)
+	{
+		window.clearTimeout(closetimer);
+		closetimer = null;
+	}
+}
+
+// close layer when click-out
+document.onclick = mclose; 
+// -->
+</script>
+
+</head>
+<body>
+<div align="center">
+  <h1>Autobuyplus.com</h1>
+  <ul id="sddm">
+    <li><a href="home.php" onmouseover="mopen('m1')" onmouseout="mclosetime()">View Users</a>
+        <div id="m1" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> <a href="home.php">View Users</a> </div>
+    </li>
+    <li><a href="auction_details.php" onmouseover="mopen('m2')" onmouseout="mclosetime()">View Cars .</a>
+        <div id="m2" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> <a href="auction_details.php">View Cars</a> </div>
+    </li>
+    <li><a href="#" onmouseover="mopen('m3')" onmouseout="mclosetime()">Live Auction</a>
+        <div id="m3" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> <a href="auto_details.php">Add Cars</a> <a href="auctiondetails.php">Live Auction Details</a> <a href="resetauction.php">Reset Auction</a> <a href="auction_details.php">Manage Live Auction</a> </div>
+    </li>
+    <li><a href="addcategory.php" onmouseover="mopen('m4')" onmouseout="mclosetime()">Add Category</a>
+        <div id="m4" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> <a href="addcategory.php">Add Category</a> </div>
+    </li>
+    <li><a href="adddamage.php" onmouseover="mopen('m5')" onmouseout="mclosetime()">Add Damage</a>
+        <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> <a href="adddamage.php">Add Damage</a> </div>
+    </li>
+    <li><a href="editadmin.php" onmouseover="mopen('m5')" onmouseout="mclosetime()">Change Password</a>
+        <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> <a href="editadmin.php">Add Damage</a> </div>
+    </li>
+    <li><a href="signout.php" onmouseover="mopen('m5')" onmouseout="mclosetime()">Sign Out</a>
+        <div id="m5" onmouseover="mcancelclosetime()" onmouseout="mclosetime()"> <a href="signout.php">Sign out</a>
+         <a href="signout.php">Sign Out</a> </div>
+    </li>
+  </ul>
+  <div style="clear:both"></div>
+  <div style="clear:both"></div>
+</div>
+<h1>&nbsp;</h1>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<?php session_start();
+if(!isset($_SESSION['so_cuserId'])) 
+{ header("Location:index.php");}
+include("conn.php");
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Welcome to Admin</title>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+<script language="JavaScript" src="calendar_us.js"></script>
+	<link rel="stylesheet" href="calendar.css">
+<style type="text/css">
+<!--
+.style1 {color: #333333}
+.style2 {color: #FF0000}
+-->
+</style>
+<style type="text/css">
+.new1 {
+width:12em;
+}
+</style>
+<script type="text/javascript">
+/*else if (parseInt(document.firstform.txtzip.value)!=document.firstform.txtzip.value)
+	{
+		alert ("Zipcode must be a number");
+		valid=false;
+	}*/
+	
+function validate9999(thisform)
+{
+var valid=true;
+if (document.form3.cat.value == "category")
+	{
+		alert ("Please select category ");
+		document.form3.cat.focus();
+		valid=false;
+	}
+else if (document.form3.txt_auto_make.value == "sub")
+	{
+		alert ("Please select make ");
+		document.form3.txt_auto_make.focus();
+		valid=false;
+	}
+else if (document.form3.txt_auto_model.value.replace(RegExp("^[ ]+", "g"), "") == "")
+	{
+		alert ("Please enter model ");
+		document.form3.txt_auto_model.focus();
+		valid=false;
+	}
+	else if (document.form3.state.value.replace(RegExp("^[ ]+", "g"), "") == "")
+	{
+		alert ("Please enter state ");
+		document.form3.state.focus();
+		valid=false;
+	}
+	else if (document.form3.city.value.replace(RegExp("^[ ]+", "g"), "") == "")
+	{
+		alert ("Please enter city ");
+		document.form3.city.focus();
+		valid=false;
+	}
+	else if (document.form3.timestamp.value.replace(RegExp("^[ ]+", "g"), "") == "")
+	{
+		alert ("Please enter date ");
+		document.form3.timestamp.focus();
+		valid=false;
+	}
+	else if (document.form3.txt_auto_odometer.value.replace(RegExp("^[ ]+", "g"), "") == "")
+	{
+		alert ("Please enter odometer ");
+		document.form3.txt_auto_odometer.focus();
+		valid=false;
+	}
+	else if (parseInt(document.form3.txt_auto_odometer.value)!=document.form3.txt_auto_odometer.value)
+	{
+		alert ("Odometer must be a number");
+		valid=false;
+	}
+	else if (document.form3.titleGroupCode.value == "tt")
+	{
+		alert ("Please choose title");
+		document.form3.titleGroupCode.focus();
+		valid=false;
+	}
+	
+	else if (document.form3.txt_auto_minbid.value.replace(RegExp("^[ ]+", "g"), "") == "")
+	{
+		alert ("Please Enter Minimum Bid Amount.");
+		document.form3.txt_auto_minbid.focus();
+		valid=false;
+	}
+	else if (parseInt(document.form3.txt_auto_minbid.value)!=document.form3.txt_auto_minbid.value)
+	{
+		alert ("Bid amount must be a number");
+		document.form3.txt_auto_minbid.focus();
+		valid=false;
+	}
+	
+	
+	return valid;
+}
+</script>
+<script type="text/javascript" src="details.js" ></script>
+</head>
+
+<body>
+<form name="form3" method="post" action="automobile_details_success.php"  enctype="multipart/form-data" onsubmit="return validate9999();">
+  <table width="377" border="1" align="center" cellpadding="2" cellspacing="2">
+    <tr>
+      <td colspan="4" bgcolor="#F2E7E1"><? include ("index.html"); ?>&nbsp;</td>
+    </tr>
+    <tr>
+      <td width="135" bgcolor="#E4EDEC">Year</td>
+      <td width="110" bgcolor="#E4EDEC"><select name="txt_auto_year" >
+        <?php
+	    $currYear = date('Y');
+		for($year=1940;$year<=$currYear;$year++)
+		{
+		  if($year == $currYear)
+		  {	echo "<option value='$year' selected='selected'>$year</option>";}
+		  else
+		  {	echo "<option value='$year'>$year</option>";}
+		}
+	?>
+      </select></td>
+      <td width="110" bgcolor="#E4EDEC">&nbsp;</td>
+      <td width="222" bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Category</td>
+      <td bgcolor="#E4EDEC"><select name="cat" id="cat" onchange="subcategory(this.value);">
+          <option value="category">Choose Category</option>
+          <?php
+	$query3="select * from categories";
+	$result2=mysql_query($query3);
+	
+	// Check Error
+	if (!$result2)
+	{ exit("Error in SQL: ". mysql_error());}
+	
+	while($row2=mysql_fetch_array($result2))
+	{
+	            $cid=$row2['id'];
+				$cname=$row2['catname'];
+				//echo "cid".$cid;
+				//echo "cname".$cname;
+		echo "<option value=$cid>$cname</option>";
+	}
+	?>
+      </select></td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Make</td>
+      <td bgcolor="#E4EDEC"><div id="state_div">
+          <select name="txt_auto_make" id="txt_auto_make" class="new1">
+            <option value="sub">Select</option>
+          </select>
+      </div></td>
+      <td bgcolor="#E4EDEC">Model</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="txt_auto_model" class="new1"/></td>
+    </tr>
+   
+    <tr>
+      <td bgcolor="#E4EDEC">State</td>
+      <td bgcolor="#E4EDEC"><select name="state" id="state"  class="new1" onchange="change()" >
+          <option value="">----- Select -----</option>
+          <option value="Alabama">Alabama</option>
+          <option value="Alaska">Alaska</option>
+          <option value="Arizona">Arizona</option>
+          <option value="Arkansas">Arkansas</option>
+          <option value="California">California</option>
+          <option value="Colorado">Colorado</option>
+          <option value="Connecticut">Connecticut</option>
+          <option value="Delaware">Delaware</option>
+          <option value="District of Columbia">District of Columbia</option>
+          <option value="Florida">Florida</option>
+          <option value="Georgia">Georgia</option>
+          <option value="Hawaii">Hawaii</option>
+          <option value="Idaho">Idaho</option>
+          <option value="Illinois">Illinois</option>
+          <option value="Indiana">Indiana</option>
+          <option value="Iowa">Iowa</option>
+          <option value="Kansas">Kansas</option>
+          <option value="Kentucky">Kentucky</option>
+          <option value="Louisiana">Louisiana</option>
+          <option value="Maine">Maine</option>
+          <option value="Maryland">Maryland</option>
+          <option value="Massachusetts">Massachusetts</option>
+          <option value="Michigan">Michigan</option>
+          <option value="Minnesota">Minnesota</option>
+          <option value="Mississippi">Mississippi</option>
+          <option value="Missouri">Missouri</option>
+          <option value="Montana">Montana</option>
+          <option value="Nebraska">Nebraska</option>
+          <option value="Nevada">Nevada</option>
+          <option value="New Hampshire">New Hampshire</option>
+          <option value="New Jersey">New Jersey</option>
+          <option value="New Mexico">New Mexico</option>
+          <option value="New York">New York</option>
+          <option value="North Carolina">North Carolina</option>
+          <option value="North Dakota">North Dakota</option>
+          <option value="Ohio">Ohio</option>
+          <option value="Oklahoma">Oklahoma</option>
+          <option value="Oregon">Oregon</option>
+          <option value="Pennsylvania">Pennsylvania</option>
+          <option value="Rhode Island">Rhode Island</option>
+          <option value="South Carolina">South Carolina</option>
+          <option value="South Dakota">South Dakota</option>
+          <option value="Tennessee">Tennessee</option>
+          <option value="Texas">Texas</option>
+          <option value="Utah">Utah</option>
+          <option value="Vermont">Vermont</option>
+          <option value="Virginia">Virginia</option>
+          <option value="Washington">Washington</option>
+          <option value="West Virginia">West Virginia</option>
+          <option value="Wisconsin">Wisconsin</option>
+          <option value="Wyoming">Wyoming</option>
+      </select></td>
+      <td bgcolor="#E4EDEC">City</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="city"  class="new1"/></td>
+    </tr>
+    
+    <tr>
+      <td bgcolor="#E4EDEC">Sale Date</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="timestamp"  />
+          <script language="JavaScript" type="text/javascript">
+	new tcal ({
+		// form name
+		'formname': 'form3',
+		// input name
+		'controlname': 'timestamp'
+	});
+
+	</script>
+        &nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Odometer</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="txt_auto_odometer" class="new1"/></td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Title</td>
+      <td bgcolor="#E4EDEC"><!--<input type="text" name="txt_auto_title" />-->
+          <select name="titleGroupCode" id="titleGroupCode" class="new1">
+            <option value="CLEAN TITLE" title="CLEAN TITLE">CLEAN TITLE</option>
+            <option value="SALVAGE TITLE" title="SALVAGE TITLE">SALVAGE TITLE</option>
+            <option value="NON-REPAIRABLE" title="NON-REPAIRABLE">NON-REPAIRABLE</option>
+          </select>      </td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Damage Type</td>
+      <td bgcolor="#E4EDEC"><select name="damage" id="damage" class="new1">
+          <option value="category">Choose Type</option>
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+      </select></td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Primary Damage</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="pdamage" id="pdamage" class="new1" /></td>
+      <td bgcolor="#E4EDEC">Secondary Damage</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="sdamage" id="sdamage" class="new1" /></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Actual Value</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="avalue" id="avalue" class="new1" />      </td>
+      <td bgcolor="#E4EDEC">Minimum Bid</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="txt_auto_minbid" class="new1" /></td>
+    </tr>
+   
+    <tr>
+      <td bgcolor="#E4EDEC">Repair Cost</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="rcost" id="rcost" class="new1"/>      </td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">VIN</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="vin" id="vin" class="new1"/>      </td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Body Style</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="bstyle" id="bstyle" class="new1"/>      </td>
+      <td bgcolor="#E4EDEC">Color</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="color" id="color" class="new1"/></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Engine</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="engine" id="engine" class="new1"/>      </td>
+      <td bgcolor="#E4EDEC">Drive</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="drive" id="drive" class="new1"/></td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td bgcolor="#E4EDEC">Cylinders</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="cylinder" id="cylinder" class="new1"/>      </td>
+      <td bgcolor="#E4EDEC">Fuel</td>
+      <td bgcolor="#E4EDEC"><select name="fuel" size="1" class="new1" id="fuel">
+        <option selected="selected">Diesel</option>
+        <option>Petrol</option>
+        <option>Electricity</option>
+      </select></td>
+    </tr>
+    
+    <tr>
+      <td bgcolor="#E4EDEC">Keys</td>
+      <td bgcolor="#E4EDEC"><input type="text" name="keys" id="keys" class="new1"/>      </td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="34" bgcolor="#E4EDEC">Access</td>
+      <td bgcolor="#E4EDEC"><select name="user" size="1" class="new1" id="user" >
+          <option value="JUNKYARD" selected="selected">JUNKYARD</option>
+          <option value="DEALER SHIP">DEALER SHIP</option>
+          <option value="PUBLIC">PUBLIC</option>
+        </select>
+        &nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+      <td bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+    <!-- <tr>
+    <td>Stock No</td>
+    <td><input type="text" name="txt_auto_productid" /></td>
+  </tr>-->
+    <tr>
+      <td height="43" bgcolor="#E4EDEC">Upload Image</td>
+      <td colspan="3" bgcolor="#E4EDEC"><input type="file" name="ifile1"/></td>
+    </tr>
+    <tr>
+      <td height="39" bgcolor="#E4EDEC">&nbsp;</td>
+      <td colspan="3" bgcolor="#E4EDEC"><input type="file" name="ifile2"/></td>
+    </tr>
+    <tr>
+      <td height="44" bgcolor="#E4EDEC">&nbsp;</td>
+      <td colspan="3" bgcolor="#E4EDEC"><input type="file" name="ifile3"/></td>
+    </tr>
+    <tr>
+      <td height="45" bgcolor="#E4EDEC">&nbsp;</td>
+      <td colspan="3" bgcolor="#E4EDEC"><input type="file" name="ifile4"/></td>
+    </tr>
+    <tr>
+      <td height="40" bgcolor="#E4EDEC">&nbsp;</td>
+      <td colspan="3" bgcolor="#E4EDEC"><input type="file" name="ifile5"/></td>
+    </tr>
+    <tr>
+      <td height="46" bgcolor="#E4EDEC">Upload Video</td>
+      <td colspan="3" bgcolor="#E4EDEC"><input type="file" name="vfile"/></td>
+    </tr>
+    <tr>
+      <td height="37" rowspan="2" bgcolor="#E4EDEC">Owner</td>
+      <td height="39" colspan="3" bgcolor="#E4EDEC"><input type="submit" name="submit" value="Insert" />
+          <select name="cmb_owner" id="cmb_owner">
+            <?php
+	$rec=mysql_query("Select * from owners order by Company_Name ASC") or die("Cannot get owners list");
+	while($recret=mysql_fetch_array($rec))
+	{
+	echo "<option value=$recret[0]>$recret[2]</option>";
+	}
+	?>
+          </select>      </td>
+    </tr>
+    <tr>
+      <td height="45" colspan="3" bgcolor="#E4EDEC">&nbsp;</td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

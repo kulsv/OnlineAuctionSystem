@@ -1,0 +1,50 @@
+<? $id=$_REQUEST['id'];
+//echo "id is::".$id;
+$email=$_REQUEST['email'];
+//echo "email is::".$email;
+$status=$_REQUEST['txtstatus'];
+//echo "status".$status;
+include("conn.php");
+if($status=="P")
+{
+$query="update cuser set status='".$status."' where id='".$id."'";
+mysql_query($query);
+}
+else if($status=="A")
+{
+$query="update cuser set status='".$status."' where id='".$id."'";
+mysql_query($query);
+$to = "$email";
+$mail_from="support@srishtis.com";
+//echo "mail_from".$mail_from;
+//$mail_from="srishti.lallu@gmail.com";
+$subject="Confirmation";
+$random_hash = md5(date('r', time()));
+$headers = "From:$mail_from\r\nReply-To:$mail_from ";
+$headers .= "\r\nContent-Type: text/html; boundary=\"PHP-alt-".$random_hash."\"";
+$message="Your Account Is Activated.";
+$send_contact=mail($to,$subject,$message,$headers);
+
+}
+else
+{
+$query="update cuser set status='".$status."' where id='".$id."'";
+mysql_query($query);
+$to = "$email";
+$mail_from="support@srishtis.com";
+//echo "mail_from".$mail_from;
+//$mail_from="srishti.lallu@gmail.com";
+$subject="Suspended";
+$random_hash = md5(date('r', time()));
+$headers = "From:$mail_from\r\nReply-To:$mail_from ";
+$headers .= "\r\nContent-Type: text/html; boundary=\"PHP-alt-".$random_hash."\"";
+$message="Your Account Is Suspended by admin";
+$send_contact=mail($to,$subject,$message,$headers);
+
+
+}
+
+
+ header("Location:home.php");
+ ?>
+

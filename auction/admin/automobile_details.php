@@ -1,0 +1,261 @@
+<? session_start();
+if(!isset($_SESSION['so_cuserId'])) 
+{
+header("Location:index.php");
+}
+include("conn.php");
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Welcome to Website</title>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+<!--
+.style1 {color: #333333}
+.style2 {color: #FF0000}
+-->
+</style>
+</head>
+
+<body>
+<form method="post" action="automobile_details_success.php"  enctype="multipart/form-data">
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td align="center" valign="top" class="body_bg"><table width="780" border="0" align="center" cellpadding="0" cellspacing="0">
+      <tr>
+        <td align="center" valign="top"><table width="758" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="center" valign="top" class="main_table"><table width="756" border="0" align="center" cellpadding="0" cellspacing="0" class="inside_table">
+              <tr>
+                <td align="left" valign="top"><table width="756" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="left" valign="top" class="header-image"></td>
+                  </tr>
+                  <tr>
+                    <td align="left" valign="top"><table width="756" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="1" align="left" valign="top"><img src="images/menu_left.gif" alt="" width="1" height="34" /></td>
+                          <td align="left" valign="top" class="menu_bg"><table width="350" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td width="107" height="34" align="center" valign="middle"><a href="home.php" class="menu_link" style="color:#FFFFFF;">Homepage</a></td>
+                                <td width="146" align="center" valign="middle"><a href="editadmin.php" class="menu_link" style="color:#FFFFFF;">Change password</a></td>
+                                <td width="32" align="center" valign="middle">&nbsp;</td>
+                                <td width="32" align="center" valign="middle">&nbsp;</td>
+                                <td width="33" align="center" valign="middle">&nbsp;</td>
+                              </tr>
+                          </table></td>
+                          <td width="120" align="left" valign="top"><a href="signout.php" style="text-decoration:none"><img src="images/menu_right.gif" alt="" width="120" height="34" border="0" /></a></td>
+                        </tr>
+                    </table></td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td align="center" valign="top"><table width="758" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td align="center" valign="top" class="main_table"><table width="756" border="0" cellpadding="0" cellspacing="0" class="inside_table">
+              <tr>
+                <td align="left" valign="top"><table width="756" border="0" cellspacing="0" cellpadding="0">
+                  <tr>
+                    <td align="left" class="body_padding"><table width="736" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td width="180" align="left" valign="top"><table width="180" border="0" cellspacing="0" cellpadding="0">
+                              <tr>
+                                <td align="left" valign="top"><table width="180" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                      <td align="left" valign="top"><img src="images/menu_top.gif" alt="" width="180" height="5" /></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="middle" class="menu_title_bg"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                          <tr>
+                                            <td height="1" align="left" valign="top"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+                                          </tr>
+                                          
+                                      </table></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="middle" class="left_menu_bg"><a href="home.php" class="left_menu_link">Users</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="top" class="left_menu_bg"><a href="videos.php" class="left_menu_link" >Posts</a></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="top" class="left_menu_bg"><a href="newvideos.php" class="left_menu_link style2">New</a></td>
+                                    </tr>
+                                    <tr>
+                                     <td align="left" valign="top" class="left_menu_bg"><a href="automobile_details.php" class="left_menu_link" >Add Details</a></td>
+                                    </tr>
+                                    
+                                    <tr>
+                                      <td align="left" valign="top" class="left_menu_bg1"><a href="#bonus-slots.html" class="left_menu_link"></a></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="top" class="left_menu_bg1"><a href="#royal-flush-bonus.html" class="left_menu_link"></a></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="top" class="left_menu_bg1"><a href="#club.html" class="left_menu_link"></a></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="top" class="left_menu_bg1"><a href="#faq.html" class="left_menu_link"></a></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="top" class="left_menu_bg1"><a href="#support.html" class="left_menu_link"></a></td>
+                                    </tr>
+                                    <tr>
+                                      <td align="left" valign="top"><img src="images/menu_bottom.gif" alt="" width="180" height="5" /></td>
+                                    </tr>
+                                </table></td>
+                              </tr>
+                              <tr>
+                                <td align="left" valign="top">&nbsp;</td>
+                              </tr>
+                              <tr>
+                                <td align="center" valign="top"><a href="#download.html"></a></td>
+                              </tr>
+                          </table></td>
+                          <td width="10" align="left" valign="top">&nbsp;</td>
+                          <td align="left" valign="top">
+                          
+                          <div  style=" border:#000000; width:550px; overflow:auto;">
+                          <table width="238" border="1" cellspacing="2" cellpadding="2">
+  <tr>
+    <td width="57">Year</td>
+    <td width="161">
+	<select name="txt_auto_year">
+	<?php
+	for($year=1990;$year<=2009;$year++)
+	
+	echo "<option selected='selected'>$year</option>";
+	?>
+    </select>
+    </td>
+  </tr>
+  <tr>
+    <td>Make</td>
+    <td><select name="txt_auto_make">
+	<?php
+	$query1="select distinct(Viechle_Name) from tbl_vehicles";
+	$result=mysql_query($query1);
+		while($row=mysql_fetch_array($result))
+	{
+		echo "<option selected='selected'>".$row['Viechle_Name']."</option>";
+	}
+	?>
+    </select></td>
+  </tr>
+  <tr>
+    <td>Model</td>
+    <td><input type="text" name="txt_auto_model" /></td>
+  </tr>
+  <tr>
+    <td>Facility</td>
+    <td><input type="text" name="txt_auto_facility" /></td>
+  </tr>
+  <tr>
+    <td>Sale Date</td>
+    <td><select name="sale_year">
+	<?php
+	for($year=1930;$year<=2009;$year++)
+	
+	echo "<option selected='selected'>$year</option>";
+	
+	?>
+    </select>
+      <select name="sale_month">
+	  <?php
+	  echo "<option selected='selected' value='1'>Jan</option>";
+	  echo "<option selected='selected' value='2'>Feb</option>";
+	  echo "<option selected='selected' value='3'>Mar</option>";
+	  echo "<option selected='selected' value='4'>Apr</option>";
+	  echo "<option selected='selected' value='5'>May</option>";
+	  echo "<option selected='selected' value='6'>Jun</option>";
+	  echo "<option selected='selected' value='7'>Jul</option>";
+	  echo "<option selected='selected' value='8'>Aug</option>";
+	  echo "<option selected='selected' value='9'>Sep</option>";
+	  echo "<option selected='selected' value='10'>Oct</option>";
+	  echo "<option selected='selected' value='11'>Nov</option>";
+	  echo "<option selected='selected' value='12'>Dec</option>";
+	?>
+      </select>
+      <select name="sale_day">
+	  <?php
+	  for($day=1;$day<=31;$day++)
+	
+	echo "<option selected='selected'>$day</option>";
+	
+	?>
+	  
+      </select>
+      </td>
+  </tr>
+  <tr>
+    <td>Odometer</td>
+    <td><input type="text" name="txt_auto_odometer" /></td>
+  </tr>
+  <tr>
+    <td>Title</td>
+    <td><input type="text" name="txt_auto_title" /></td>
+  </tr>
+  <tr>
+    <td>Damage Type</td>
+    <td><input type="text" name="txt_auto_damage" /></td>
+  </tr>
+  <tr>
+    <td>Minimum Bid</td>
+    <td><input type="text" name="txt_auto_minbid" /></td>
+  </tr>
+  <tr>
+    <td>Stock No</td>
+    <td><input type="text" name="txt_auto_productid" /></td>
+  </tr>
+   <tr>
+    <td>Upload Image</td>
+    <td><input type="file" name="ifile"/></td>
+  </tr>
+  <tr>
+    <td>Upload Video</td>
+    <td><input type="file" name="vfile"/></td>
+  </tr>
+  <tr>
+        <td><input type="submit" name="submit" value="Insert" /></td>
+  </tr>
+</table>
+</div>
+</td>
+                        </tr>
+                    </table></td>
+                  </tr>
+                </table></td>
+              </tr>
+            </table></td>
+          </tr>
+        </table></td>
+      </tr>
+      <tr>
+        <td align="left" valign="top"><table width="780" border="0" cellspacing="0" cellpadding="0">
+          <tr>
+            <td width="22" align="left" valign="top"><img src="images/footer_left.gif" alt="" width="22" height="29" /></td>
+            <td align="left" valign="middle" bgcolor="#505050" style="border-top:1px solid #CC0000; padding-left:12px;"><br />
+              © Srishi Innovative Computer Systems.</td>
+            <!--
+We request you retain the full web design copyright notice below including the link to http://www.sarkis-webdesign.com
+This not only gives respect to the large amount of time given freely by the designer but also helps build interest, traffic and use of template. If you cannot (for good reason) retain the full design copyright we request you at least leave in place the image Web designer - Sarkis, with linked to http://www.sarkis-webdesign.com. Good luck!
+
+Web designer Sarkis
+// -->
+            <td width="156" align="left" valign="top"><a href="http://www.sarkis-webdesign.com" title="Website Design" target="_blank"><img src="images/website-design.gif" alt="Website Design" width="156" height="29" border="0" /></a></td>
+          </tr>
+        </table></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</form>
+</body>
+</html>

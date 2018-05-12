@@ -1,0 +1,81 @@
+<?php session_start();
+if(!isset($_SESSION['so_cuserId'])) 
+{
+header("Location:index.php");
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Welcome to AutoBuyPlus Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+</head>
+<script>
+function validate222()
+{alert("hi");
+var valid=true;
+ if (document.form1.damage.value.replace(RegExp("^[ ]+", "g"), "") == "")
+{
+alert ("Please select damage type ");
+document.form1.damage.focus();
+valid=false;
+}
+else if (document.form1.new1.value.replace(RegExp("^[ ]+", "g"), "") == "")
+		{
+		document.form1.new1.focus();
+		//emailID.value="";
+		//document.getElementById("email").focus();
+		//alert("invalid emailId");
+		valid=false;
+		}
+		return valid;
+</script>
+<body>
+<?
+$type=$_POST['damage'];
+//echo "dasda".$type;
+include("conn.php");
+//$type=$_POST['type'];
+//echo $type;
+ $query="select * from tbl_damage";
+						   $res=mysql_query($query);
+						   
+?>
+  <label></label>
+  <table width="842" border="1" align="center">
+    <tr>
+      <td width="399" bgcolor="#F2E7E1"><? include("index.html");?>&nbsp;</td>
+    </tr>
+    <tr>
+      <td height="182" bgcolor="#E4EDEC"><form id="form1" name="form1" method="post" action="updatedamage.php" onsubmit="return validate222();">
+        <label></label>
+        <div align="center">
+          <p>&nbsp;</p>
+          <p>
+            <label>Select DamageType
+            <select name="damage" size="1" id="damage">
+             <option value="<? echo $type;?>" selected="selected" id ="type1"><? echo $type;?></option>  
+            <? while($res1=mysql_fetch_array($res))
+			
+			
+			{?>
+            <option id ="type1" value="<? echo $res1['type'];?>"><? echo $res1['type'];?></option>
+            
+			<? } ?>
+            </select>
+            </label>
+            <label></label>
+          </p>
+          <p>Enter New Damage
+            <input type="text" name="new1" id="new1" value="<? echo $type;?>"/>
+            <input type="submit" name="button2" onclick="return validate222();" id="button2" value="Edit" />
+          </p>
+        </div>
+      </form>
+      
+        
+      <p>&nbsp;</p></td>
+    </tr>
+  </table>
+</body>
+</html>

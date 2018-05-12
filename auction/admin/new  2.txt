@@ -1,0 +1,12 @@
+ <? /*( $bidstatus=$row['bid_status'];
+   if($bidstatus=='0')
+   { ?>
+    <td bgcolor="#009933">&nbsp;</td>
+    
+    <? }
+	else
+	{
+	 ?>
+     <td bgcolor="#FF0000">&nbsp;</td>
+     <? } */?>
+   

@@ -1,0 +1,24 @@
+body {
+	background: #eee;
+	color: #222;
+	font: 0.8em Arial, Helvetica, sans-serif;
+}
+
+h1 {
+	font: 2em normal Arial, Helvetica, sans-serif;
+	margin-bottom: 0.5em;
+}
+
+hr {
+	margin: 1em 0;
+	height: 1px;
+	border: 1px solid #eee;
+}
+
+.center { text-align: center; }
+#container {
+	background: #fff;
+	margin: 100px auto 0 auto;
+	padding: 1em;
+	width: 400px;
+}

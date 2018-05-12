@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Welcome to Website</title>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+<!--
+.style2 {
+	font-size: 12px;
+	font-weight: bold;
+}
+-->
+</style>
+</head>
+
+<body>
+<div align="center" style="vertical-align:middle">
+<div style="height:200px"></div>
+<form name="first" action="logincheckadmin.php">
+<table width="100" border="0" style="border-style:solid">
+  <tr>
+    <td colspan="2" align="left"><span class="style2">Login</span></td>
+    </tr>
+  <tr>
+    <td><strong>Username</strong></td>
+    <td><input type="text" name="txtuid" id="txtuid" /></td>
+  </tr>
+  <tr>
+    <td><strong>Password</strong></td>
+    <td><input type="password" name="txtpwd" id="txtpwd" /></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="left"><input type="submit" value="Login" /></td></tr>
+    <tr>
+    <td>&nbsp;</td>
+    <td align="left">
+    <? $stat=$_REQUEST['flag'];
+	if($stat=="FAILED")
+	{
+	echo "Username doesnot exists";
+	}
+	if($stat=="PFAILED")
+	{
+	echo "Invalid Password";
+	}
+	?></td>
+  </tr>
+</table>
+</form>
+</div>
+
+</body>
+</html>

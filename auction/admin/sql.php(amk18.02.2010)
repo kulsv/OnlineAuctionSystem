@@ -1,0 +1,19 @@
+<?php
+include("conn.php");
+
+$id=$_GET['id'];
+
+		  $sql="Select * from subcat where catid='".$id."' order by subid asc"; 
+		  $res=mysql_query($sql) or die(mysql_error()) ;
+		  echo "<select name='txt_auto_make' id='txt_auto_make'>";
+		  echo "<option value='sub'>Select</option>";
+		 while ($row=mysql_fetch_array($res))
+		 { 
+		
+		  $stateId=$row['subid'];
+		  $state_name=$row['subname'];
+		  echo "<option value=$state_name>$state_name</option>";
+		 }
+		echo "</select>";
+		
+?>

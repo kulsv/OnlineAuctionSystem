@@ -1,0 +1,26 @@
+
+
+ 
+
+ul,form,h2 {margin:0; padding:0; list-style:none; clear:both}
+#container { width:649px; height:750px; margin:10px auto;}
+
+div.title { width:558px; height:35px; text-align:center}
+div.title  { margin:0 0 42px 0; padding:3px 0 0 5px; color:#FFFFFF; font-size:23px; font-weight:normal }
+
+.label,.field { margin-bottom:10px}
+.label { width:250px; float:left; color:#333333; font-size:21px;}
+.label  { height:38px;}
+.desc { font-size:11px; display:block; color:#999999}
+.status { font-size:15px; color:#FFFFFF; } 
+.field { width:290px; height:38px;float:left }
+
+.submit { cursor:pointer}
+
+.invalid_message { width:100%; clear:both; font-size:12px; color:#990000; text-align:center; padding-top:5px; height:auto}
+.ajax_spinner { color:#003399; font-size:12px;}
+.ajax_spinner img { vertical-align:middle}
+.default { width:459px; margin:auto; text-align:center; clear:both;}
+.ajax_notify { border:1px solid #990000; font-size:18px; padding:5px; margin-bottom:10px; width:500px; display:none}
+.ajax_notify  { font-weight:normal; color:#333333}
+

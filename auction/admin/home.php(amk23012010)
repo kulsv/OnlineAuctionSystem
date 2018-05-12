@@ -1,0 +1,84 @@
+<?php session_start();
+if(!isset($_SESSION['so_cuserId'])) 
+{
+header("Location:index.php");
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Welcome to AutoBuyPlus Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+<!--
+.style1 {color: #333333}
+.style4 {color: #333333; font-weight: bold; }
+-->
+</style>
+</head>
+
+<body>
+<table width="726" border="0" align="center" >
+  <tr bgcolor="#F2E7E1">
+    <td height="13" colspan="6" bgcolor="#F2E7E1"><? include("index.html"); ?>&nbsp;</td>
+  </tr>
+  <tr bgcolor="#F2E7E1">
+    <td width="51" height="13" bgcolor="#F2E7E1"><span class="style4">Name</span></td>
+    
+
+    <td width="121" bgcolor="#F2E7E1" class="style4">Company Name</td>
+    <td width="90"><span class="style4">Type</span></td>
+    <td width="137"><span class="style4">Time</span></td>
+    <td width="88"><span class="style4">Staus</span></td>
+    <td width="213"><span class="style4">Options</span><span class="style4"></span></td>
+  </tr>
+  <?php
+	       include("conn.php");
+						   $query="select * from cuser order by company_name asc";
+						   $res=mysql_query($query);
+						   while($res1=mysql_fetch_array($res))
+						   {
+						   $id=$res1['id'];
+						   $name=$res1['userName'];
+						   $type=$res1['type'];
+						   $companyname=$res1['company_name'];
+						   $status=$res1['status'];
+						    $time=$res1['timstamp'];
+						   ?>
+  <tr bgcolor="#E4EDEC">
+    <td bgcolor="#E4EDEC"><span class="style1"><?php echo $name; ?></span></td>
+  
+    <td bgcolor="#E4EDEC"><span class="style1"><?php echo $companyname; ?></span></td>
+    <td><span class="style1">
+      <?php  if($type=="D")
+	{
+	echo "Dealer";
+	}
+	else
+	{
+	echo "Public";
+	} ?>
+    </span></td>
+    <td bgcolor="#E4EDEC"><span class="style1"><?php echo $time; ?></span></td>
+    <td><span class="style1">
+      <?php  if($status=="A")
+	{
+	echo "Active";
+	}
+	else if($status=="P")
+	{
+	echo "Pending";
+	}
+	else
+	{
+	echo "Suspended";
+	} ?>
+    </span></td>
+    <td><span class="style1"><a href="edit.php?id=<?php echo $id; ?>">Edit Status</a>&nbsp;&nbsp; <a href="delete.php?id=<?php echo $id; ?>">Delete </a>&nbsp;&nbsp;<a href="view.php?id=<?php echo $id; ?>">View</a>&nbsp;&nbsp;</span></td>
+  </tr>
+  <?php
+  }
+  ?>
+</table>
+</body>
+</html>

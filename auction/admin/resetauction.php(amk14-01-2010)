@@ -1,0 +1,63 @@
+<? session_start();
+if(!isset($_SESSION['so_cuserId'])) 
+{
+header("Location:index.php");
+}
+?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Welcome to Website</title>
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+<!--
+.style1 {color: #333333}
+.style2 {color: #FF0000}
+-->
+</style>
+</head>
+
+<body>
+
+  <table width="831" border="0" align="center" >
+    <tr bgcolor="#F2E7E1">
+      <td width="6" height="28" rowspan="2"><span class="style1"></span></td>
+      <td colspan="6"  bgcolor="#F2E7E1"><? include("index.html"); ?>&nbsp;</td>
+    </tr>
+    <tr bgcolor="#F2E7E1">
+      <td width="174"  bgcolor="#F2E7E1"><span class="style1">Stock</span></td>
+      <td width="53" ><span class="style1">Year</span></td>
+      <td width="64" ><span class="style1">Title</span></td>
+      <td width="50" ><span class="style1">Make</span></td>
+      <td width="79" ><span class="style1">Model</span></td>
+      <td width="242" ><span class="style1">Reset</span><span class="style1"> to auction</span></td>
+    </tr>
+    <?
+  include("conn.php");
+						   $query="select * from tbl_automobile_details where status='A' and bid_status=1";
+						   $res=mysql_query($query);
+						   while($res1=mysql_fetch_array($res))
+						   {
+						   $id=$res1['auto_id'];
+						   $stock=$res1['stockno'];
+						   $year=$res1['auto_year'];
+						   $title=$res1['auto_title'];
+						   $make=$res1['auto_make'];
+						   $model=$res1['auto_model'];
+						   ?>
+    <tr bgcolor="#E4EDEC">
+      <td><span class="style1"></span></td>
+      <td bgcolor="#E4EDEC"><span class="style1"><? echo $stock; ?></span></td>
+      <td><span class="style1"><? echo $year; ?></span></td>
+      <td><span class="style1"><? echo $title; ?></span></td>
+      <td><span class="style1"><? echo $make; ?></span></td>
+      <td><span class="style1"><? echo $model; ?></span></td>
+      <td><span class="style1"><a href="resetstatus.php?id=<? echo $id; ?>">Reset</a></span></td>
+    </tr>
+    <? 
+  }
+  ?>
+  </table>
+
+</body>
+</html>

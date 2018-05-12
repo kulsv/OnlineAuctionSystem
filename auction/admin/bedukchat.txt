@@ -1,0 +1,17 @@
+hi kamini :)
+bol beduk :D
+ok toh tra wo admin wala table dikha jahape paramater pass  nai hora
+
+mai ek code copy paste karta hu yahape usme na unhone php mei html tags likha hai
+n also jab har record se values miltahai name email etc toh wo values pass ho sakte hai via url 
+rukk wo copy paste karta hu dekhle tu ek baar
+ooo okayy
+
+
+
+ek baar net se dekh how to pass paraeters via url in php smjhjayegi okk abhi?  ha kuch kaam h teko??? nai
+ab try kar
+ruk lemme see ok
+upar nt nai hai neeche nt kahase aaya
+woh site wala try kr rhi thi
+wait maine ek update ka likha tha syntax chek kar kyu rub kiya

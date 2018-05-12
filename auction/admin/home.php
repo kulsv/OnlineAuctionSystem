@@ -1,0 +1,97 @@
+<?php session_start();
+if(!isset($_SESSION['so_cuserId'])) 
+{
+include 'index.html';
+}
+?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>Welcome to Auction Admin</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="css/stylesheet.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+<!--
+.style1 {color: #333333}
+.style4 {color: #333333; font-weight: bold; }
+-->
+</style>
+</head>
+
+<body>
+<table width="960" border="0" align="center" ><BR><BR>
+  <tr bgcolor="#F2E7E1">
+    <td height="13" colspan="7" bgcolor="#F2E7E1"><? include("index.html"); ?>&nbsp;</td>
+  </tr>
+  <tr bgcolor="#F2E7E1">
+    <td width="69" height="13" bgcolor="#F2E7E1"><strong>User Id</strong></td>
+    
+
+    <td width="65" bgcolor="#F2E7E1"><span class="style4">Username Name</span></td>
+	
+ 
+    <td width="98"><span class="style4">Address</span></td>
+    <td width="58"><span class="style4">Country</span></td>
+    <td width="85"><span class="style4">Zip</span></td>
+	
+	    <td width="185"><span class="style4">Contact</span></td>
+		
+    <td width="250"><span class="style4">Email ID</span><span class="style4"></span></td>
+    <td width="85"><span class="style4">Status</span></td>
+	    <td width="185"><span class="style4">Status Option</span></td>
+  </tr>
+  <?php
+							//session_start();
+						
+	       include("connection.inc.php");
+						   $query="select * from sign_in";
+						   $res=mysql_query($query);
+						   while($res1=mysql_fetch_array($res))
+						   {
+						    global $uid;
+							$uid=$res1['user_id'];
+						   $name=$res1['uname'];
+						   $address=$res1['address'];
+						   $country=$res1['country'];
+						   $zip=$res1['zip'];
+						   $contact=$res1['contact'];
+						    $email=$res1['email'];
+							$status=$res1['status'];
+						   ?>
+    <tr bgcolor="#E4EDEC">
+    <td bgcolor="#E4EDEC"><?php echo $uid; ?></td>
+    <td bgcolor="#E4EDEC"><span class="style1"><?php echo $name; ?></span></td>
+
+    <td><span class="style1"><?php echo $address; ?>
+	
+    
+     
+    </span></td>
+    <td bgcolor="#E4EDEC"><span class="style1"><?php echo $country; ?></span></td>
+	<td><span class="style1"><?php echo $zip; ?>
+	<td><span class="style1"><?php echo $contact; ?>
+	<td><span class="style1"><?php echo $email; ?>
+	
+	
+	
+    <td><span class="style1">
+      <?php  if($status=="A")
+	{
+	echo "Active";
+	}
+	else if($status=="P")
+	{
+	echo "Pending";
+	}
+	else
+	{
+	echo "Suspended";
+	} ?>
+    </span></td>
+    <td width="550"><span class="style1"><a href="newedit.php?id=<?php echo $res1['user_id'];?>">Edit Status</a>&nbsp;&nbsp; </span></td>
+  </tr>
+  <?php
+  }
+  ?>
+</table>
+</body>
+</html>

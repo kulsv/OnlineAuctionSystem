@@ -1,0 +1,50 @@
+.navbar-inverse .nav > li > .thickbox{
+	padding:0px 0px;
+}
+
+.container .row hr{
+	margin: 0px 0px;
+}
+
+.container .row hr.bottom{
+	margin-bottom: 20px;
+}
+
+.container .row hr.top{
+	margin-top: 20px;
+}
+
+.tile p{
+	margin-bottom: 15px;
+}
+
+table#cart tr th {
+		background: #2c3e50;
+		color: #fff;
+		text-align: left;
+		white-space: nowrap;
+		padding:10px 10px;
+		font-size: 16px;
+		font-weight: normal;
+	}
+
+table#cart tr th:first-child {
+		background: #2c3e50;
+		color: #fff;
+		text-align: left;
+		white-space: nowrap;
+		padding:10px 10px;
+		border-top-left-radius:6px;
+		border-bottom-left-radius:6px;
+	}
+
+table#cart tr th:last-child {
+		background: #2c3e50;
+		color: #fff;
+		text-align: left;
+		white-space: nowrap;
+		padding:10px 10px;
+		border-top-right-radius:6px;
+		border-bottom-right-radius:6px;
+	}
+

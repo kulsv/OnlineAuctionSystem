@@ -1,0 +1,52 @@
+<!DOCTYPE html>  
+<html lang="en"><head>  
+<meta charset="utf-8">  
+<title>JavaScript Form Validation using a sample registration form</title>  
+<meta name="keywords" content="example, JavaScript Form Validation, Sample registration form" />  
+<meta name="description" content="This document is an example of JavaScript Form Validation using a sample registration form. " />  
+<link rel='stylesheet' href='js-form-validation.css' type='text/css' />  
+<script src="validx.js"></script>  
+</head>  
+<body onload="document.registration.userid.focus();">  
+<h1>Registration Form</h1>  
+
+<form name='registration' onSubmit="return formValidation();">  
+
+User id: 
+<input type="text" name="userid" size="12" /> 
+<br><br>
+Password:
+<input type="password" name="passid" size="12" />
+
+<br><br>
+Name: 
+<input type="text" name="username" size="50" /> 
+<br><br>
+Address:  
+<input type="text" name="address" value="" size="50" />
+<br><br>
+Country
+<select name="country">  
+<option selected="" value="Default">(Please select a country)</option>  
+<option value="AF">Australia</option>  
+<option value="AL">Canada</option>  
+<option value="DZ">India</option>  
+<option value="AS">Russia</option>  
+<option value="AD">USA</option>  
+</select>  
+<br><br>
+ZIP Code:
+<input type="text" name="zip" />
+<br><br>
+Contact:
+<input type="text" name="contact" />
+<br><br>
+
+Email:
+<input type="email" name="email" size="50" />
+<br><br>
+<input type="submit" name="submit" value="Submit" />
+
+</form>  
+</body>  
+</html>  
